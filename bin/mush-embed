@@ -3,7 +3,7 @@
 # @package: mush-embed
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-01-05 develop)
-# @build_date: 2025-01-31T18:21:35Z
+# @build_date: 2025-01-31T18:33:44Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -15,11 +15,13 @@ embed() { return 0; }
 
 embed pluto
 embed alias_for_pluto pluto
+embed alias_for_main main
 embed manifest ../Manifest.toml
 
 main() {
   pluto
   alias_for_pluto
+  alias_for_main > main.txt
   manifest
 }
 pluto() {
