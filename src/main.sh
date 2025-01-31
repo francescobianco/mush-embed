@@ -1,4 +1,10 @@
 
+embed pluto
+embed alias_for_pluto pluto
+embed manifest ../Manifest.toml
+
 main() {
-  echo "Hello World!"
+  pluto
+  alias_for_pluto
+  manifest
 }
