@@ -3,7 +3,7 @@
 # @package: mush-embed
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-04-20 develop)
-# @build_date: 2025-04-27T16:02:37Z
+# @build_date: 2025-04-27T16:26:46Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -16,16 +16,13 @@ embed() { return 0; }
 #extern package console
 
 embed pluto
-#embed alias_for_pluto pluto
-#embed alias_for_main main
-#embed manifest ../Manifest.toml
 
 #embed console
 #embed alias_for_console console
 
 main() {
-  #pluto
-  alias_for_pluto
+  tamplates sample.txt > main.txt
+  #alias_for_pluto
   #alias_for_main > main.txt
   #manifest
   #console
@@ -33,10 +30,10 @@ main() {
 }
 pluto() {
   cat <<'EOF'
+inject file sample.txt
+inject variable sample_var
 pluto() {
-cat <<'FILE'
-TEST
-FILE
+  test
 }
 EOF
 }

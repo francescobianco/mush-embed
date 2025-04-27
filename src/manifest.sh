@@ -1,0 +1,2 @@
+
+inject file "../Manifest.toml"
