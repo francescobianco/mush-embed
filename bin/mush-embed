@@ -3,7 +3,7 @@
 # @package: mush-embed
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-04-20 develop)
-# @build_date: 2025-04-28T10:40:47Z
+# @build_date: 2025-04-28T11:10:18Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -17,12 +17,13 @@ inject() { return 0; }
 #extern package console
 
 embed pluto
+embed manifest
 
 #embed console
 #embed alias_for_console console
 
 main() {
-  pluto sample.txt > main.txt
+  manifest MANIFEST
   #alias_for_pluto
   #alias_for_main > main.txt
   #manifest
@@ -50,6 +51,36 @@ EMBED
         ;;
       sample_var)
         echo ""
+        ;;
+      *)
+        echo ": "
+        ;;
+    esac
+  fi
+}
+manifest() {
+  if [ -z "$1" ]; then
+    cat <<'EMBED'
+inject file MANIFEST
+EMBED
+  else
+    case "$1" in
+      MANIFEST)
+        cat <<'EMBED'
+[package]
+name = "mush-embed"
+version = "0.1.0"
+edition = "2022"
+
+# See more keys and their definitions at https://mush.javanile.org/manifest.html
+
+[dependencies]
+#console = "*"
+#build_info = "#develop"
+## Implement support for
+## console = "git https://github.com/javanile/mush.git develop packages/console"
+
+EMBED
         ;;
       *)
         echo ": "

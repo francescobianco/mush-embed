@@ -1,2 +1,2 @@
 
-inject file "../Manifest.toml"
+inject file MANIFEST

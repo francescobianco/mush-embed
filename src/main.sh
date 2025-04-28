@@ -2,12 +2,13 @@
 #extern package console
 
 embed pluto
+embed manifest
 
 #embed console
 #embed alias_for_console console
 
 main() {
-  pluto sample.txt > main.txt
+  manifest MANIFEST
   #alias_for_pluto
   #alias_for_main > main.txt
   #manifest
