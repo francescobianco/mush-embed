@@ -7,7 +7,7 @@ embed pluto
 #embed alias_for_console console
 
 main() {
-  tamplates sample.txt > main.txt
+  pluto sample.txt > main.txt
   #alias_for_pluto
   #alias_for_main > main.txt
   #manifest

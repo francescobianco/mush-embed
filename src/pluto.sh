@@ -1,6 +1,6 @@
 
 inject file sample.txt
-inject variable sample_var
+inject env sample_var
 
 pluto() {
   test

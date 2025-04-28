@@ -3,7 +3,7 @@
 # @package: mush-embed
 # @build_type: bin
 # @build_with: Mush 0.2.0 (2025-04-20 develop)
-# @build_date: 2025-04-27T16:26:46Z
+# @build_date: 2025-04-28T10:40:47Z
 set -e
 use() { return 0; }
 extern() { return 0; }
@@ -11,6 +11,7 @@ legacy() { return 0; }
 module() { return 0; }
 public() { return 0; }
 embed() { return 0; }
+inject() { return 0; }
 ## BP004: Compile the entrypoint
 
 #extern package console
@@ -21,7 +22,7 @@ embed pluto
 #embed alias_for_console console
 
 main() {
-  tamplates sample.txt > main.txt
+  pluto sample.txt > main.txt
   #alias_for_pluto
   #alias_for_main > main.txt
   #manifest
@@ -29,13 +30,32 @@ main() {
   #alias_for_console
 }
 pluto() {
-  cat <<'EOF'
+  if [ -z "$1" ]; then
+    cat <<'EMBED'
 inject file sample.txt
-inject variable sample_var
+inject env sample_var
 pluto() {
   test
 }
-EOF
+EMBED
+  else
+    case "$1" in
+      sample.txt)
+        cat <<'EMBED'
+
+Test!
+
+
+EMBED
+        ;;
+      sample_var)
+        echo ""
+        ;;
+      *)
+        echo ": "
+        ;;
+    esac
+  fi
 }
 ## BP005: Execute the entrypoint
 main "$@"
